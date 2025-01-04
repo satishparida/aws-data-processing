@@ -1,0 +1,49 @@
+{
+  "jobConfig": {
+    "name": "test_iceberg_datalake",
+    "description": "",
+    "role": "arn:aws:iam::988410076871:role/service-role/AWSGlueServiceRole-Crawl",
+    "command": "glueetl",
+    "version": "4.0",
+    "runtime": null,
+    "workerType": "G.1X",
+    "numberOfWorkers": 2,
+    "maxCapacity": 2,
+    "jobRunQueuingEnabled": false,
+    "maxRetries": 0,
+    "timeout": 480,
+    "maxConcurrentRuns": 1,
+    "security": "none",
+    "scriptName": "test_iceberg_datalake.py",
+    "scriptLocation": "s3://aws-glue-assets-988410076871-us-east-2/scripts/",
+    "language": "python-3",
+    "spark": true,
+    "sparkConfiguration": "standard",
+    "jobParameters": [
+      {
+        "key": "--datalake-formats",
+        "value": "iceberg",
+        "existing": false
+      }
+    ],
+    "tags": [],
+    "jobMode": "DEVELOPER_MODE",
+    "createdOn": "2025-01-03T20:35:30.256Z",
+    "developerMode": true,
+    "connectionsList": [],
+    "temporaryDirectory": "s3://aws-glue-assets-988410076871-us-east-2/temporary/",
+    "logging": true,
+    "glueHiveMetastore": true,
+    "etlAutoTuning": true,
+    "metrics": true,
+    "observabilityMetrics": true,
+    "bookmark": "job-bookmark-disable",
+    "sparkPath": "s3://aws-glue-assets-988410076871-us-east-2/sparkHistoryLogs/",
+    "flexExecution": false,
+    "minFlexWorkers": null,
+    "maintenanceWindow": null,
+    "dataLineage": false
+  },
+  "hasBeenSaved": false,
+  "usageProfileName": null
+}
