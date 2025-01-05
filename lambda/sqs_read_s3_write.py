@@ -32,7 +32,7 @@ def lambda_handler(event, context):
                 break
             
             for message in messages:
-                message_body = message['Body']
+                message_body = json.loads(json.loads(message['Body'])['Message'])
                 receipt_handle = message['ReceiptHandle']
                 
                 # Generate unique S3 key for each message
@@ -43,7 +43,7 @@ def lambda_handler(event, context):
                 s3_client.put_object(
                     Bucket=S3_BUCKET_NAME,
                     Key=s3_key,
-                    Body=json.dumps({"message": message_body}),
+                    Body=json.dumps(message_body),
                     ContentType='application/json'
                 )
                 print(f"Message written to S3: {s3_key}")
