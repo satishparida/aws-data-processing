@@ -1,5 +1,5 @@
 {
-  "Comment": "Test Step Function to Create SNS topics and read them from Queue and write to S3 Landing, from there read and write to icenberg delta lake using glue",
+  "Comment": "Step Function to Create SNS topics and read them from Queue and write to S3 Landing, from there read and write to icenberg delta lake using glue",
   "StartAt": "Run Parallel SNS",
   "States": {
     "Run Parallel SNS": {
@@ -159,10 +159,14 @@
     },
     "Write to Lake": {
       "Type": "Task",
-      "Resource": "arn:aws:states:::glue:startJobRun",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
       "Arguments": {
         "JobName": "test_iceberg-streeming"
       },
+      "Next": "Write to Lake Finished"
+    },
+    "Write to Lake Finished": {
+      "Type": "Pass",
       "End": true
     }
   },
